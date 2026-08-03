@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parth Tarsariya — AI Engineer</title>
+<meta name="description" content="AI engineer building production LLM systems — hybrid RAG, multi-agent workflows, and financial data pipelines. Shipped core modules of NeoTrade covering 2,300+ NSE-listed companies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E14;
+  --surface:#121826;
+  --surface-2:#0E1420;
+  --line:#232B3D;
+  --ink:#E8ECF4;
+  --muted:#8B94A7;
+  --violet:#A78BFA;
+  --violet-dim:rgba(167,139,250,.14);
+  --bull:#34D399;
+  --bear:#F87171;
+  --neu:#FBBF24;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --body:'Instrument Sans',system-ui,sans-serif;
+  --display:'Sora',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(rgba(35,43,61,.22) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(35,43,61,.22) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+::selection{background:var(--violet);color:#0B0E14}
+a{color:var(--violet);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+section{scroll-margin-top:96px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,14,20,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1060px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{
+  font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.06em;
+  color:var(--ink);display:flex;align-items:center;gap:9px;
+}
+.brand-dot{width:9px;height:9px;border-radius:2px;background:var(--violet);display:inline-block}
+.nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:12.5px}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--ink);text-decoration:none}
+
+/* ---------- hero ---------- */
+.hero{padding:84px 0 40px}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--violet);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--violet)}
+.hero h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(34px,5.4vw,58px);
+  line-height:1.12;letter-spacing:-.02em;
+  margin:18px 0 20px;max-width:16ch;
+}
+.hero h1 em{font-style:normal;color:var(--violet)}
+.hero-sub{color:var(--muted);max-width:58ch;font-size:17.5px}
+.links-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  padding:11px 18px;border-radius:8px;border:1px solid var(--line);
+  color:var(--ink);background:var(--surface);
+  transition:border-color .15s,transform .15s;
+}
+.btn:hover{border-color:var(--violet);text-decoration:none;transform:translateY(-1px)}
+.btn.primary{background:var(--violet);color:#0B0E14;border-color:var(--violet)}
+.btn.primary:hover{background:#b9a5fb}
+
+/* ---------- terminal (signature) ---------- */
+.terminal{
+  margin-top:52px;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.7);
+}
+.term-head{
+  display:flex;align-items:center;gap:8px;
+  padding:11px 16px;border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.term-head .dot{width:10px;height:10px;border-radius:50%}
+.term-head .dot:nth-child(1){background:var(--bear)}
+.term-head .dot:nth-child(2){background:var(--neu)}
+.term-head .dot:nth-child(3){background:var(--bull)}
+.term-title{
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  margin-left:8px;letter-spacing:.04em;
+}
+.term-body{
+  padding:20px 22px;min-height:196px;
+  font-family:var(--mono);font-size:13.5px;line-height:1.85;
+  white-space:pre-wrap;word-break:break-word;color:#C6CEDF;
+}
+.term-body .ok{color:var(--bull)}
+.term-body .key{color:var(--violet)}
+.term-body .dim{color:var(--muted)}
+.term-body .up{color:var(--bull);font-weight:600}
+.cursor{
+  display:inline-block;width:8px;height:15px;background:var(--violet);
+  vertical-align:-2px;animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- stats strip ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  margin:56px 0 0;background:var(--surface-2);
+}
+.stat{padding:20px 22px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat b{
+  display:block;font-family:var(--mono);font-weight:600;
+  font-size:22px;color:var(--ink);letter-spacing:-.01em;
+}
+.stat span{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.05em}
+
+/* ---------- sections ---------- */
+.section{padding:88px 0 0}
+.section-head{margin-bottom:34px}
+.section-head h2{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(24px,3vw,32px);letter-spacing:-.015em;margin-top:12px;
+}
+
+/* ---------- experience ---------- */
+.xp-card{
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:14px;padding:30px 32px;
+}
+.xp-top{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:8px;margin-bottom:6px;
+}
+.xp-top h3{font-family:var(--display);font-weight:600;font-size:20px}
+.xp-dates{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.xp-org{color:var(--muted);font-size:15.5px;margin-bottom:26px}
+.xp-block{border-top:1px solid var(--line);padding:22px 0}
+.xp-block:last-child{padding-bottom:4px}
+.xp-block h4{
+  font-family:var(--mono);font-size:13.5px;font-weight:600;
+  color:var(--violet);letter-spacing:.03em;margin-bottom:8px;
+}
+.xp-block p{color:var(--muted);font-size:15.5px;max-width:76ch}
+.xp-block p b{color:var(--ink);font-weight:600}
+
+/* ---------- chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  padding:4px 10px;border-radius:6px;
+  border:1px solid var(--line);color:var(--muted);background:var(--surface);
+}
+.chip.bull{color:var(--bull);border-color:rgba(52,211,153,.35)}
+.chip.bear{color:var(--bear);border-color:rgba(248,113,113,.35)}
+.chip.neu{color:var(--neu);border-color:rgba(251,191,36,.35)}
+.chip.vio{color:var(--violet);border-color:rgba(167,139,250,.4);background:var(--violet-dim)}
+
+/* ---------- projects ---------- */
+.grid-projects{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:14px;padding:26px 28px;
+  display:flex;flex-direction:column;
+  transition:border-color .18s,transform .18s;
+}
+.card:hover{border-color:var(--violet);transform:translateY(-3px)}
+.card.featured{grid-column:1/-1}
+.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
+.card h3{font-family:var(--display);font-weight:600;font-size:19px}
+.card-link{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.card p{color:var(--muted);font-size:15.5px;max-width:80ch}
+.card p b{color:var(--ink);font-weight:600}
+.metrics-row{display:flex;flex-wrap:wrap;gap:22px;margin-top:18px}
+.metric b{font-family:var(--mono);font-size:17px;color:var(--violet);display:block}
+.metric span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em}
+
+/* ---------- skills ---------- */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.skill-group{
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:14px;padding:22px 24px;
+}
+.skill-group h3{
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  color:var(--violet);letter-spacing:.05em;margin-bottom:14px;
+}
+
+/* ---------- education / footer ---------- */
+.edu{
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:14px;padding:26px 28px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:baseline;
+}
+.edu h3{font-family:var(--display);font-weight:600;font-size:18px}
+.edu p{color:var(--muted);font-size:15px}
+.footer{padding:96px 0 60px;text-align:center}
+.footer h2{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(28px,4vw,42px);letter-spacing:-.02em;margin-bottom:14px;
+}
+.footer p{color:var(--muted);max-width:52ch;margin:0 auto 28px}
+.footer-meta{
+  margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;
+}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .cursor{animation:none}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-top:1px solid var(--line)}
+  .stat:nth-child(1),.stat:nth-child(2){border-top:none}
+  .stat:nth-child(3){border-left:none}
+  .grid-projects,.skills-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .nav-links{display:none}
+  .hero{padding-top:60px}
+  .xp-card,.card,.skill-group{padding:22px 20px}
+  .term-body{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Parth Tarsariya home"><span class="brand-dot"></span>parth.tarsariya</a>
+    <div class="nav-links">
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <p class="eyebrow">Parth Tarsariya · AI Engineer · Surat, IN</p>
+    <h1>Building LLM systems that hold up in <em>production</em>.</h1>
+    <p class="hero-sub">I work on hybrid RAG, multi-agent workflows, and the data pipelines underneath them — most recently shipping core modules of <b style="color:var(--ink)">NeoTrade</b>, a market-intelligence platform covering 2,300+ NSE-listed companies.</p>
+    <div class="links-row">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn" href="https://github.com/Parth-hub-sys" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/parth-tarsariya-56b544262" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="mailto:ptarsariya176@gmail.com">Email</a>
+    </div>
+
+    <div class="terminal" aria-label="Animated trace of Parth's systems">
+      <div class="term-head">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="term-title" id="term-title">neotrade · retrieval trace</span>
+      </div>
+      <div class="term-body"><span id="term-text"></span><span class="cursor" aria-hidden="true"></span></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>2,300+</b><span>NSE companies covered</span></div>
+      <div class="stat"><b>~10×</b><span>latency cut (49s → 4–5s)</span></div>
+      <div class="stat"><b>Top 10</b><span>Kaggle leaderboard (8th)</span></div>
+      <div class="stat"><b>3 calls</b><span>LLM cap per query</span></div>
+    </div>
+  </header>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section" id="experience">
+    <div class="section-head reveal">
+      <p class="eyebrow">experience</p>
+      <h2>Internship — real systems in production</h2>
+    </div>
+
+    <div class="xp-card reveal">
+      <div class="xp-top">
+        <h3>AI Developer Intern</h3>
+        <span class="xp-dates">Jan 2026 – Jun 2026</span>
+      </div>
+      <p class="xp-org">Sura Neoage System Transformation Pvt. Ltd. — Surat, India</p>
+
+      <div class="xp-block">
+        <h4>NeoTrade — financial-market intelligence platform</h4>
+        <p>Live platform for Indian equities. <b>Daily scraping pipelines</b> orchestrated with Temporal cover <b>2,300+ NSE-listed companies</b> — corporate actions, pledge, credit rating, governance, and shareholding — with <b>XBRL parsers</b> extracting and normalizing key fields into PostgreSQL. Served through FastAPI, deployed with Docker.</p>
+        <div class="chips">
+          <span class="chip vio">Temporal</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">XBRL</span>
+        </div>
+      </div>
+
+      <div class="xp-block">
+        <h4>Hybrid RAG engine</h4>
+        <p>Each query fans out in parallel to a <b>Neo4j knowledge graph</b> (triplet retrieval) and a <b>vector store</b> (semantic search). Contexts merge with per-source health checks and single-source fallback — every answer grounded in retrieved evidence, so the model can't hallucinate a response.</p>
+        <div class="chips">
+          <span class="chip vio">Neo4j</span><span class="chip vio">Vector search</span><span class="chip">LangChain</span><span class="chip">LangGraph</span>
+        </div>
+      </div>
+
+      <div class="xp-block">
+        <h4>BSE announcements intelligence</h4>
+        <p>End-to-end pipeline scrapes filing PDFs and classifies each by category / sub-category into <b>importance buckets</b>. High-value filings get <b>OCR + LLM</b>: long &amp; short summaries, an important / not-important flag, and market sentiment — <b>bullish, bearish, or neutral</b> — signalling likely share-price impact. Non-important PDFs archive to S3 with OCR only; users trigger LLM analysis on demand, cutting inference costs.</p>
+        <div class="chips">
+          <span class="chip bull">▲ bullish</span><span class="chip bear">▼ bearish</span><span class="chip neu">◆ neutral</span><span class="chip">OCR</span><span class="chip">AWS S3</span>
+        </div>
+      </div>
+
+      <div class="xp-block">
+        <h4>News intelligence</h4>
+        <p>Integrated the <b>Marketaux API</b> for per-company market news, scraped full article text with <b>Trafilatura</b>, generated long &amp; short LLM summaries, and ingested them into the hybrid RAG knowledge base for retrieval.</p>
+        <div class="chips">
+          <span class="chip">Marketaux API</span><span class="chip">Trafilatura</span><span class="chip">RAG ingestion</span>
+        </div>
+      </div>
+
+      <div class="xp-block">
+        <h4>Kumbh Tech — investment platform</h4>
+        <p>Built the complete <b>Flutter frontend</b> for a two-role platform: <b>distributors</b> manage their investor network and recommend opportunities; <b>investors</b> execute one-time or SIP investments.</p>
+        <div class="chips">
+          <span class="chip vio">Flutter</span><span class="chip">One-time / SIP</span><span class="chip">Distributor · Investor roles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="section-head reveal">
+      <p class="eyebrow">projects</p>
+      <h2>Selected work</h2>
+    </div>
+
+    <div class="grid-projects">
+      <article class="card featured reveal">
+        <div class="card-top">
+          <h3>Music Store Multi-Agent Assistant</h3>
+          <a class="card-link" href="https://github.com/Parth-hub-sys/Music-Assistant" target="_blank" rel="noopener">github ↗</a>
+        </div>
+        <p>A <b>supervisor-routed multi-agent system</b> over the Chinook PostgreSQL database — music, invoice, and general specialists in a deterministic pipeline with no ReAct loops. A privacy-first <b>identity gate</b> uses LangGraph interrupts (human-in-the-loop) before any sensitive data is exposed, and SQL runs only through <b>audited, parameterized Python tool wrappers</b> — never generated by the LLM. Persistent per-customer memory survives across sessions; every run is profiled end-to-end with LangSmith.</p>
+        <div class="metrics-row">
+          <div class="metric"><b>49s → 4–5s</b><span>response time (~10×)</span></div>
+          <div class="metric"><b>3</b><span>max LLM calls / query</span></div>
+          <div class="metric"><b>0</b><span>LLM-generated SQL</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip vio">LangGraph</span><span class="chip">LangChain</span><span class="chip">Groq</span><span class="chip">PostgreSQL</span><span class="chip">FastAPI</span><span class="chip">LangSmith</span>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top"><h3>Hybrid RAG System</h3></div>
+        <p>Personal RAG build combining <b>Neo4j graph retrieval</b> — symbolic reasoning over triplets — with <b>FAISS / Pinecone semantic search</b>, merging both contexts before generation. Significantly reduced hallucinations and improved answer accuracy on context-heavy questions.</p>
+        <div class="chips">
+          <span class="chip vio">Neo4j</span><span class="chip">FAISS / Pinecone</span><span class="chip">LangChain</span><span class="chip">Python</span>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top"><h3>Car Price Prediction — Kaggle</h3></div>
+        <p>XGBoost regression model that ranked <b>8th (Top 10)</b> on the competition leaderboard. Improved performance <b>~25%</b> through feature engineering and hyperparameter tuning.</p>
+        <div class="metrics-row">
+          <div class="metric"><b>#8</b><span>leaderboard rank</span></div>
+          <div class="metric"><b>+25%</b><span>model improvement</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip vio">XGBoost</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills">
+    <div class="section-head reveal">
+      <p class="eyebrow">skills</p>
+      <h2>Tools I work with</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h3>GenAI &amp; LLMs</h3>
+        <div class="chips">
+          <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Hybrid RAG</span><span class="chip">Multi-Agent Systems</span><span class="chip">Prompt Engineering</span><span class="chip">Groq</span><span class="chip">LangSmith</span><span class="chip">OCR + LLM pipelines</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Data &amp; Backend</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">SQLAlchemy</span><span class="chip">Neo4j</span><span class="chip">MongoDB</span><span class="chip">Temporal</span><span class="chip">Docker</span><span class="chip">AWS S3</span><span class="chip">Web Scraping</span><span class="chip">XBRL Parsing</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>ML &amp; Deep Learning</h3>
+        <div class="chips">
+          <span class="chip">Scikit-learn</span><span class="chip">XGBoost</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">Time Series</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Frontend &amp; Other</h3>
+        <div class="chips">
+          <span class="chip">Flutter</span><span class="chip">React</span><span class="chip">Git / GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section class="section" id="education">
+    <div class="section-head reveal">
+      <p class="eyebrow">education</p>
+      <h2>Background</h2>
+    </div>
+    <div class="edu reveal">
+      <div>
+        <h3>B.Tech in Information Technology</h3>
+        <p>Sarvajanik College of Engineering &amp; Technology, Surat</p>
+      </div>
+      <div style="text-align:right">
+        <p style="font-family:var(--mono);font-size:13px;color:var(--ink)">2022 – 2026</p>
+        <p style="font-family:var(--mono);font-size:13px">CGPA 8.54</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="footer" id="contact">
+    <div class="reveal">
+      <h2>Let's build something.</h2>
+      <p>Open to AI engineering roles — LLM systems, RAG, agents, and the data infrastructure behind them.</p>
+      <div class="links-row" style="justify-content:center">
+        <a class="btn primary" href="mailto:ptarsariya176@gmail.com">ptarsariya176@gmail.com</a>
+        <a class="btn" href="https://github.com/Parth-hub-sys" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="https://www.linkedin.com/in/parth-tarsariya-56b544262" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="footer-meta">
+        <span>Surat, Gujarat, India</span>
+        <span>+91 97237 82351</span>
+        <span>© <span id="year"></span> Parth Tarsariya</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+// ---------- terminal traces (signature element) ----------
+const traces = [
+  {
+    title: "neotrade · hybrid rag trace",
+    lines: [
+      '<span class="dim">$</span> <span class="key">query</span> "promoter pledge changes for RELIANCE last quarter"',
+      '<span class="dim">→</span> vector_search   chroma      <span class="ok">✓</span> 12 chunks',
+      '<span class="dim">→</span> graph_search    neo4j       <span class="ok">✓</span> 9 triplets',
+      '<span class="dim">→</span> merge_context   both ok     <span class="ok">✓</span> fallback not needed',
+      '<span class="dim">→</span> llm_answer      grounded in retrieved evidence <span class="ok">✓</span>'
+    ]
+  },
+  {
+    title: "neotrade · bse announcement pipeline",
+    lines: [
+      '<span class="dim">$</span> <span class="key">bse_filing</span> PDF "Investor Presentation — Q4 Results"',
+      '<span class="dim">→</span> classify        sub-category → <span class="key">important bucket</span>',
+      '<span class="dim">→</span> ocr + llm       long summary <span class="ok">✓</span>  short summary <span class="ok">✓</span>',
+      '<span class="dim">→</span> sentiment       <span class="up">▲ BULLISH</span> — likely share-price impact',
+      '<span class="dim">→</span> ingest          rag knowledge base <span class="ok">✓</span>'
+    ]
+  },
+  {
+    title: "music assistant · agent route",
+    lines: [
+      '<span class="dim">$</span> <span class="key">user</span> "show my invoices"',
+      '<span class="dim">→</span> verify_identity  interrupt → human input <span class="ok">✓</span>',
+      '<span class="dim">→</span> supervisor       intent: <span class="key">invoice</span>',
+      '<span class="dim">→</span> tool             get_invoices_by_customer <span class="ok">✓</span> safe SQL wrapper',
+      '<span class="dim">→</span> response         <span class="ok">4.9s</span> <span class="dim">(down from 49s)</span>'
+    ]
+  }
+];
+
+const termText = document.getElementById('term-text');
+const termTitle = document.getElementById('term-title');
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function showStatic(i){
+  termTitle.textContent = traces[i].title;
+  termText.innerHTML = traces[i].lines.join('\n');
+}
+
+if (reduced) {
+  showStatic(0);
+} else {
+  let t = 0;
+  function playTrace(){
+    const trace = traces[t];
+    termTitle.textContent = trace.title;
+    termText.innerHTML = '';
+    let li = 0;
+    function nextLine(){
+      if (li < trace.lines.length){
+        termText.innerHTML += (li ? '\n' : '') + trace.lines[li];
+        li++;
+        setTimeout(nextLine, li === 1 ? 700 : 480);
+      } else {
+        t = (t + 1) % traces.length;
+        setTimeout(playTrace, 4200);
+      }
+    }
+    nextLine();
+  }
+  playTrace();
+}
+
+// ---------- scroll reveal ----------
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ---------- footer year ----------
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
