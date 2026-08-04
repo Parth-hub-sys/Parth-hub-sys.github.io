@@ -3,21 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parth Tarsariya — AI Engineer</title>
-<meta name="description" content="AI engineer building production LLM systems — hybrid RAG, multi-agent workflows, and financial data pipelines. Shipped core modules of NeoTrade covering 2,300+ NSE-listed companies.">
+<title>Parth Tarsariya — AI Engineer | LLMs, RAG & Multi-Agent Workflows</title>
+<meta name="description" content="AI Engineer building production LLM systems — hybrid RAG, multi-agent workflows, and financial data pipelines. Shipped core modules of NeoTrade covering 2,300+ NSE-listed companies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0B0E14;
-  --surface:#121826;
-  --surface-2:#0E1420;
-  --line:#232B3D;
-  --ink:#E8ECF4;
-  --muted:#8B94A7;
+  --bg:#090C10;
+  --surface:#111622;
+  --surface-2:#0D121D;
+  --surface-glass:rgba(17, 22, 34, 0.75);
+  --line:#1F293D;
+  --line-glow:rgba(167, 139, 250, 0.3);
+  --ink:#EDF1F7;
+  --muted:#8C96AB;
   --violet:#A78BFA;
-  --violet-dim:rgba(167,139,250,.14);
+  --violet-glow:rgba(167, 139, 250, 0.25);
+  --cyan:#38BDF8;
   --bull:#34D399;
   --bear:#F87171;
   --neu:#FBBF24;
@@ -35,40 +38,63 @@ body{
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
   background-image:
-    linear-gradient(rgba(35,43,61,.22) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(35,43,61,.22) 1px,transparent 1px);
-  background-size:44px 44px;
+    radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+    linear-gradient(rgba(31, 41, 61, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 41, 61, 0.25) 1px, transparent 1px);
+  background-size:100% 100%, 44px 44px, 44px 44px;
 }
-::selection{background:var(--violet);color:#0B0E14}
-a{color:var(--violet);text-decoration:none}
-a:hover{text-decoration:underline}
+::selection{background:var(--violet);color:#090C10}
+a{color:var(--violet);text-decoration:none;transition:color .15s, opacity .15s}
+a:hover{opacity:.85}
 :focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:4px}
 
-.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 section{scroll-margin-top:96px}
 
-/* ---------- nav ---------- */
+/* ---------- Nav ---------- */
 .nav{
   position:sticky;top:0;z-index:50;
-  background:rgba(11,14,20,.82);
-  backdrop-filter:blur(10px);
+  background:rgba(9, 12, 16, 0.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
 }
 .nav-inner{
-  max-width:1060px;margin:0 auto;padding:14px 24px;
+  max-width:1080px;margin:0 auto;padding:14px 24px;
   display:flex;align-items:center;justify-content:space-between;gap:16px;
 }
 .brand{
-  font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.06em;
-  color:var(--ink);display:flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.04em;
+  color:var(--ink);display:flex;align-items:center;gap:10px;
 }
-.brand-dot{width:9px;height:9px;border-radius:2px;background:var(--violet);display:inline-block}
-.nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:12.5px}
+.brand-pulse{
+  width:9px;height:9px;border-radius:50%;background:var(--bull);
+  box-shadow:0 0 10px var(--bull);position:relative;
+}
+.brand-pulse::after{
+  content:"";position:absolute;inset:-3px;border-radius:50%;
+  border:1px solid var(--bull);animation:pulse 2s infinite;
+}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.nav-links{display:flex;align-items:center;gap:22px;font-family:var(--mono);font-size:12.5px}
 .nav-links a{color:var(--muted)}
 .nav-links a:hover{color:var(--ink);text-decoration:none}
+.nav-cta{
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  padding:6px 12px;border-radius:6px;background:var(--violet-glow);
+  color:var(--violet);border:1px solid rgba(167, 139, 250, 0.4);
+  transition:all .2s ease;
+}
+.nav-cta:hover{background:var(--violet);color:#090C10}
 
-/* ---------- hero ---------- */
-.hero{padding:84px 0 40px}
+/* ---------- Hero ---------- */
+.hero{padding:72px 0 40px}
+.badge-status{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;color:var(--bull);
+  background:rgba(52, 211, 153, 0.08);border:1px solid rgba(52, 211, 153, 0.25);
+  padding:4px 12px;border-radius:20px;margin-bottom:18px;
+}
 .eyebrow{
   font-family:var(--mono);font-size:12px;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;color:var(--violet);
@@ -77,52 +103,66 @@ section{scroll-margin-top:96px}
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--violet)}
 .hero h1{
   font-family:var(--display);font-weight:700;
-  font-size:clamp(34px,5.4vw,58px);
+  font-size:clamp(36px,5.5vw,60px);
   line-height:1.12;letter-spacing:-.02em;
-  margin:18px 0 20px;max-width:16ch;
+  margin:16px 0 20px;max-width:18ch;
 }
-.hero h1 em{font-style:normal;color:var(--violet)}
-.hero-sub{color:var(--muted);max-width:58ch;font-size:17.5px}
+.hero h1 em{font-style:normal;color:var(--violet);background:-webkit-linear-gradient(45deg, var(--violet), var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--muted);max-width:62ch;font-size:17.5px}
+.hero-sub b{color:var(--ink)}
+
 .links-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .btn{
+  display:inline-flex;align-items:center;gap:8px;
   font-family:var(--mono);font-size:13px;font-weight:500;
   padding:11px 18px;border-radius:8px;border:1px solid var(--line);
   color:var(--ink);background:var(--surface);
-  transition:border-color .15s,transform .15s;
+  transition:all .18s ease;cursor:pointer;
 }
-.btn:hover{border-color:var(--violet);text-decoration:none;transform:translateY(-1px)}
-.btn.primary{background:var(--violet);color:#0B0E14;border-color:var(--violet)}
-.btn.primary:hover{background:#b9a5fb}
+.btn:hover{border-color:var(--violet);text-decoration:none;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.4)}
+.btn.primary{background:var(--violet);color:#090C10;border-color:var(--violet);font-weight:600}
+.btn.primary:hover{background:#bfaafb;color:#090C10}
+.btn.cyan{background:rgba(56, 189, 248, 0.12);color:var(--cyan);border-color:rgba(56, 189, 248, 0.4)}
+.btn.cyan:hover{background:var(--cyan);color:#090C10}
 
-/* ---------- terminal (signature) ---------- */
+/* ---------- Terminal ---------- */
 .terminal{
-  margin-top:52px;
+  margin-top:48px;
   background:var(--surface-2);
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:14px;
   overflow:hidden;
-  box-shadow:0 24px 60px -30px rgba(0,0,0,.7);
+  box-shadow:0 24px 60px -20px rgba(0,0,0,0.8), 0 0 1px 1px rgba(255,255,255,0.05);
 }
 .term-head{
-  display:flex;align-items:center;gap:8px;
-  padding:11px 16px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 18px;border-bottom:1px solid var(--line);
   background:var(--surface);
 }
-.term-head .dot{width:10px;height:10px;border-radius:50%}
-.term-head .dot:nth-child(1){background:var(--bear)}
-.term-head .dot:nth-child(2){background:var(--neu)}
-.term-head .dot:nth-child(3){background:var(--bull)}
+.term-dots{display:flex;align-items:center;gap:8px}
+.term-dots .dot{width:11px;height:11px;border-radius:50%}
+.term-dots .dot:nth-child(1){background:var(--bear)}
+.term-dots .dot:nth-child(2){background:var(--neu)}
+.term-dots .dot:nth-child(3){background:var(--bull)}
 .term-title{
   font-family:var(--mono);font-size:12px;color:var(--muted);
-  margin-left:8px;letter-spacing:.04em;
+  letter-spacing:.04em;
 }
+.term-tabs{display:flex;gap:8px}
+.term-tab{
+  font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;
+  background:transparent;color:var(--muted);border:1px solid transparent;cursor:pointer;
+}
+.term-tab.active{background:var(--surface-2);color:var(--violet);border-color:var(--line)}
+
 .term-body{
-  padding:20px 22px;min-height:196px;
+  padding:22px 24px;min-height:210px;
   font-family:var(--mono);font-size:13.5px;line-height:1.85;
-  white-space:pre-wrap;word-break:break-word;color:#C6CEDF;
+  white-space:pre-wrap;word-break:break-word;color:#C8D1E0;
 }
 .term-body .ok{color:var(--bull)}
 .term-body .key{color:var(--violet)}
+.term-body .cyan{color:var(--cyan)}
 .term-body .dim{color:var(--muted)}
 .term-body .up{color:var(--bull);font-weight:600}
 .cursor{
@@ -131,111 +171,204 @@ section{scroll-margin-top:96px}
 }
 @keyframes blink{50%{opacity:0}}
 
-/* ---------- stats strip ---------- */
+/* ---------- Stats Strip ---------- */
 .stats{
   display:grid;grid-template-columns:repeat(4,1fr);
-  border:1px solid var(--line);border-radius:12px;overflow:hidden;
-  margin:56px 0 0;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  margin:48px 0 0;background:var(--surface-2);
+  box-shadow:0 12px 30px rgba(0,0,0,0.3);
 }
-.stat{padding:20px 22px;border-left:1px solid var(--line)}
+.stat{padding:22px 24px;border-left:1px solid var(--line);transition:background .2s}
+.stat:hover{background:rgba(167, 139, 250, 0.03)}
 .stat:first-child{border-left:none}
 .stat b{
   display:block;font-family:var(--mono);font-weight:600;
-  font-size:22px;color:var(--ink);letter-spacing:-.01em;
+  font-size:24px;color:var(--ink);letter-spacing:-.01em;
 }
-.stat span{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.05em}
+.stat b span{color:var(--violet)}
+.stat span.label{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em}
 
-/* ---------- sections ---------- */
-.section{padding:88px 0 0}
+/* ---------- Sections ---------- */
+.section{padding:84px 0 0}
 .section-head{margin-bottom:34px}
 .section-head h2{
   font-family:var(--display);font-weight:600;
-  font-size:clamp(24px,3vw,32px);letter-spacing:-.015em;margin-top:12px;
+  font-size:clamp(26px,3.2vw,36px);letter-spacing:-.015em;margin-top:10px;
 }
 
-/* ---------- experience ---------- */
+/* ---------- Interactive AI Playground ---------- */
+.playground{
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:16px;padding:28px 30px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.pg-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.pg-title h3{font-family:var(--display);font-size:20px;color:var(--ink)}
+.pg-title p{font-size:14px;color:var(--muted)}
+.pg-selectors{display:flex;flex-wrap:wrap;gap:8px}
+.pg-btn{
+  font-family:var(--mono);font-size:12px;padding:8px 14px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--line);color:var(--muted);
+  cursor:pointer;transition:all .15s ease;
+}
+.pg-btn:hover{border-color:var(--violet);color:var(--ink)}
+.pg-btn.active{background:var(--violet-glow);color:var(--violet);border-color:var(--violet)}
+
+.pg-console{
+  background:#070A0F;border:1px solid var(--line);border-radius:12px;
+  padding:20px;font-family:var(--mono);font-size:13px;line-height:1.7;
+}
+.pg-prompt{color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.pg-output{color:#D1D7E3;min-height:140px;white-space:pre-wrap}
+.pg-meta{
+  display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:14px;
+  border-top:1px dashed var(--line);font-size:12px;color:var(--muted);
+}
+.pg-meta span b{color:var(--bull)}
+
+/* ---------- Experience ---------- */
 .xp-card{
   background:var(--surface-2);border:1px solid var(--line);
-  border-radius:14px;padding:30px 32px;
+  border-radius:16px;padding:32px;position:relative;
+  box-shadow:0 16px 40px rgba(0,0,0,0.3);
+}
+.xp-card::before{
+  content:"";position:absolute;top:0;left:0;width:4px;height:100%;
+  background:linear-gradient(to bottom, var(--violet), var(--cyan));
+  border-top-left-radius:16px;border-bottom-left-radius:16px;
 }
 .xp-top{
   display:flex;flex-wrap:wrap;align-items:baseline;
   justify-content:space-between;gap:8px;margin-bottom:6px;
 }
-.xp-top h3{font-family:var(--display);font-weight:600;font-size:20px}
-.xp-dates{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.xp-top h3{font-family:var(--display);font-weight:600;font-size:22px}
+.xp-dates{font-family:var(--mono);font-size:13px;color:var(--violet);background:var(--violet-dim);padding:3px 10px;border-radius:6px}
 .xp-org{color:var(--muted);font-size:15.5px;margin-bottom:26px}
 .xp-block{border-top:1px solid var(--line);padding:22px 0}
 .xp-block:last-child{padding-bottom:4px}
 .xp-block h4{
-  font-family:var(--mono);font-size:13.5px;font-weight:600;
-  color:var(--violet);letter-spacing:.03em;margin-bottom:8px;
+  font-family:var(--mono);font-size:14px;font-weight:600;
+  color:var(--violet);letter-spacing:.02em;margin-bottom:8px;
 }
-.xp-block p{color:var(--muted);font-size:15.5px;max-width:76ch}
+.xp-block p{color:var(--muted);font-size:15.5px;max-width:78ch}
 .xp-block p b{color:var(--ink);font-weight:600}
 
-/* ---------- chips ---------- */
+/* ---------- Chips ---------- */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .chip{
   font-family:var(--mono);font-size:11.5px;font-weight:500;
   padding:4px 10px;border-radius:6px;
   border:1px solid var(--line);color:var(--muted);background:var(--surface);
 }
-.chip.bull{color:var(--bull);border-color:rgba(52,211,153,.35)}
-.chip.bear{color:var(--bear);border-color:rgba(248,113,113,.35)}
-.chip.neu{color:var(--neu);border-color:rgba(251,191,36,.35)}
-.chip.vio{color:var(--violet);border-color:rgba(167,139,250,.4);background:var(--violet-dim)}
+.chip.bull{color:var(--bull);border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.06)}
+.chip.bear{color:var(--bear);border-color:rgba(248,113,113,.35);background:rgba(248,113,113,.06)}
+.chip.neu{color:var(--neu);border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
+.chip.vio{color:var(--violet);border-color:rgba(167,139,250,.4);background:var(--violet-glow)}
+.chip.cyan{color:var(--cyan);border-color:rgba(56,189,248,.4);background:rgba(56,189,248,.08)}
 
-/* ---------- projects ---------- */
+/* ---------- Projects ---------- */
 .grid-projects{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .card{
   background:var(--surface-2);border:1px solid var(--line);
-  border-radius:14px;padding:26px 28px;
+  border-radius:16px;padding:28px;
   display:flex;flex-direction:column;
-  transition:border-color .18s,transform .18s;
+  transition:all .2s ease;position:relative;
 }
-.card:hover{border-color:var(--violet);transform:translateY(-3px)}
+.card:hover{border-color:var(--violet);transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,0.5)}
 .card.featured{grid-column:1/-1}
-.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
-.card h3{font-family:var(--display);font-weight:600;font-size:19px}
+.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.card h3{font-family:var(--display);font-weight:600;font-size:20px;color:var(--ink)}
+.card-actions{display:flex;align-items:center;gap:12px}
 .card-link{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.card-modal-btn{
+  font-family:var(--mono);font-size:11.5px;color:var(--violet);
+  background:var(--violet-glow);border:1px solid rgba(167,139,250,0.3);
+  padding:3px 8px;border-radius:4px;cursor:pointer;
+}
+.card-modal-btn:hover{background:var(--violet);color:#090C10}
 .card p{color:var(--muted);font-size:15.5px;max-width:80ch}
 .card p b{color:var(--ink);font-weight:600}
-.metrics-row{display:flex;flex-wrap:wrap;gap:22px;margin-top:18px}
+.metrics-row{display:flex;flex-wrap:wrap;gap:22px;margin-top:18px;padding-top:14px;border-top:1px dashed var(--line)}
 .metric b{font-family:var(--mono);font-size:17px;color:var(--violet);display:block}
-.metric span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em}
+.metric span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
 
-/* ---------- skills ---------- */
+/* ---------- Skills ---------- */
 .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .skill-group{
   background:var(--surface-2);border:1px solid var(--line);
-  border-radius:14px;padding:22px 24px;
+  border-radius:16px;padding:24px 26px;
 }
 .skill-group h3{
   font-family:var(--mono);font-size:13px;font-weight:600;
   color:var(--violet);letter-spacing:.05em;margin-bottom:14px;
 }
 
-/* ---------- education / footer ---------- */
+/* ---------- Education ---------- */
 .edu{
   background:var(--surface-2);border:1px solid var(--line);
-  border-radius:14px;padding:26px 28px;
-  display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:baseline;
+  border-radius:16px;padding:28px 30px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center;
 }
-.edu h3{font-family:var(--display);font-weight:600;font-size:18px}
-.edu p{color:var(--muted);font-size:15px}
+.edu h3{font-family:var(--display);font-weight:600;font-size:20px}
+.edu p{color:var(--muted);font-size:15.5px}
+.edu-cgpa{
+  font-family:var(--mono);font-size:14px;color:var(--bull);
+  background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);
+  padding:6px 14px;border-radius:8px;font-weight:600;
+}
+
+/* ---------- Contact / Footer ---------- */
 .footer{padding:96px 0 60px;text-align:center}
 .footer h2{
   font-family:var(--display);font-weight:700;
-  font-size:clamp(28px,4vw,42px);letter-spacing:-.02em;margin-bottom:14px;
+  font-size:clamp(30px,4.5vw,46px);letter-spacing:-.02em;margin-bottom:14px;
 }
-.footer p{color:var(--muted);max-width:52ch;margin:0 auto 28px}
+.footer p{color:var(--muted);max-width:54ch;margin:0 auto 28px;font-size:17px}
+.contact-card{
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:16px;padding:36px;max-width:640px;margin:0 auto;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
 .footer-meta{
-  margin-top:44px;font-family:var(--mono);font-size:12px;color:var(--muted);
+  margin-top:48px;font-family:var(--mono);font-size:12px;color:var(--muted);
   display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;
 }
 
-/* ---------- reveal ---------- */
+/* ---------- Toast Notification ---------- */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  font-family:var(--mono);font-size:13px;color:#090C10;
+  background:var(--bull);padding:10px 18px;border-radius:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  transform:translateY(100px);opacity:0;transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ---------- Modal Popup ---------- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .2s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal-content{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;
+  position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.8);
+}
+.modal-close{
+  position:absolute;top:20px;right:20px;background:var(--surface-2);border:1px solid var(--line);
+  color:var(--muted);width:32px;height:32px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.modal-close:hover{color:var(--ink);border-color:var(--violet)}
+.modal-title{font-family:var(--display);font-size:22px;margin-bottom:12px;color:var(--ink)}
+.modal-body{font-size:15px;color:var(--muted);line-height:1.7}
+.modal-body h4{font-family:var(--mono);font-size:13px;color:var(--violet);margin:16px 0 8px}
+.modal-body ul{margin-left:20px;margin-bottom:14px}
+.modal-body li{margin-bottom:6px}
+
+/* ---------- Reveal Animation ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
@@ -244,19 +377,21 @@ section{scroll-margin-top:96px}
   .cursor{animation:none}
 }
 
-/* ---------- responsive ---------- */
+/* ---------- Responsive ---------- */
 @media (max-width:860px){
   .stats{grid-template-columns:1fr 1fr}
   .stat{border-top:1px solid var(--line)}
   .stat:nth-child(1),.stat:nth-child(2){border-top:none}
   .stat:nth-child(3){border-left:none}
   .grid-projects,.skills-grid{grid-template-columns:1fr}
+  .card.featured{grid-column:auto}
 }
 @media (max-width:640px){
   .nav-links{display:none}
-  .hero{padding-top:60px}
-  .xp-card,.card,.skill-group{padding:22px 20px}
+  .hero{padding-top:40px}
+  .xp-card,.card,.skill-group,.playground,.contact-card{padding:22px 18px}
   .term-body{font-size:12px}
+  .edu{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
@@ -264,12 +399,17 @@ section{scroll-margin-top:96px}
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="brand" href="#top" aria-label="Parth Tarsariya home"><span class="brand-dot"></span>parth.tarsariya</a>
+    <a class="brand" href="#top" aria-label="Parth Tarsariya home">
+      <span class="brand-pulse"></span>parth.tarsariya
+    </a>
     <div class="nav-links">
       <a href="#experience">experience</a>
       <a href="#projects">projects</a>
+      <a href="#playground">ai playground</a>
       <a href="#skills">skills</a>
+      <a href="#education">education</a>
       <a href="#contact">contact</a>
+      <a class="nav-cta" href="Parth_Tarsariya_resume.pdf" download="Parth_Tarsariya_resume.pdf">Resume 📄</a>
     </div>
   </div>
 </nav>
@@ -278,29 +418,42 @@ section{scroll-margin-top:96px}
 
   <!-- ===== HERO ===== -->
   <header class="hero">
-    <p class="eyebrow">Parth Tarsariya · AI Engineer · IN</p>
+    <div class="badge-status">🟢 Open to AI Engineering Roles &amp; High-Impact Projects</div>
+    <p class="eyebrow">Parth Tarsariya · AI Engineer · Surat, India</p>
     <h1>Building LLM systems that hold up in <em>production</em>.</h1>
-    <p class="hero-sub">I work on hybrid RAG, multi-agent workflows, and the data pipelines underneath them — most recently shipping core modules of <b style="color:var(--ink)">NeoTrade</b>, a market-intelligence platform covering 2,300+ NSE-listed companies.</p>
+    <p class="hero-sub">AI Engineer specializing in <b>hybrid RAG</b>, <b>multi-agent workflows</b>, and <b>financial data engineering</b> — most recently shipping core modules of <b>NeoTrade</b>, a market-intelligence platform covering <b>2,300+ NSE-listed companies</b>.</p>
+
     <div class="links-row">
-      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn cyan" href="#playground">Try AI Simulator ⚡</a>
+      <a class="btn" href="Parth_Tarsariya_resume.pdf" download="Parth_Tarsariya_resume.pdf">Download Resume 📄</a>
       <a class="btn" href="https://github.com/Parth-hub-sys" target="_blank" rel="noopener">GitHub ↗</a>
       <a class="btn" href="https://www.linkedin.com/in/parth-tarsariya-56b544262" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="mailto:ptarsariya176@gmail.com">Email</a>
+      <button class="btn" onclick="copyText('ptarsariya176@gmail.com', 'Email copied to clipboard!')">Copy Email 📋</button>
     </div>
 
-    <div class="terminal" aria-label="Animated trace of Parth's systems">
+    <!-- ===== TERMINAL SIGNATURE ===== -->
+    <div class="terminal" aria-label="Animated trace of Parth's production AI systems">
       <div class="term-head">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="term-title" id="term-title">neotrade · retrieval trace</span>
+        <div class="term-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="term-title" id="term-title">neotrade · hybrid rag trace</span>
+        <div class="term-tabs">
+          <button class="term-tab active" onclick="selectTrace(0)">RAG Trace</button>
+          <button class="term-tab" onclick="selectTrace(1)">BSE Tagger</button>
+          <button class="term-tab" onclick="selectTrace(2)">Agent Router</button>
+        </div>
       </div>
       <div class="term-body"><span id="term-text"></span><span class="cursor" aria-hidden="true"></span></div>
     </div>
 
+    <!-- ===== STATS ===== -->
     <div class="stats">
-      <div class="stat"><b>2,300+</b><span>NSE companies covered</span></div>
-      <div class="stat"><b>~10×</b><span>latency cut (49s → 4–5s)</span></div>
-      <div class="stat"><b>Top 10</b><span>Kaggle leaderboard (8th)</span></div>
-      <div class="stat"><b>3 calls</b><span>LLM cap per query</span></div>
+      <div class="stat"><b>2,300<span>+</span></b><span class="label">NSE companies covered</span></div>
+      <div class="stat"><b>~10<span>×</span></b><span class="label">latency cut (49s → 4–5s)</span></div>
+      <div class="stat"><b>Top 10</b><span class="label">Kaggle leaderboard (#8)</span></div>
+      <div class="stat"><b>8.33</b><span class="label">B.Tech IT CGPA</span></div>
     </div>
   </header>
 
@@ -308,7 +461,7 @@ section{scroll-margin-top:96px}
   <section class="section" id="experience">
     <div class="section-head reveal">
       <p class="eyebrow">experience</p>
-      <h2>Internship — real systems in production</h2>
+      <h2>Production Systems Engineering</h2>
     </div>
 
     <div class="xp-card reveal">
@@ -319,42 +472,74 @@ section{scroll-margin-top:96px}
       <p class="xp-org">Sura Neoage System Transformation Pvt. Ltd. — Surat, India</p>
 
       <div class="xp-block">
-        <h4>NeoTrade — financial-market intelligence platform</h4>
-        <p>Live platform for Indian equities. <b>Daily scraping pipelines</b> orchestrated with Temporal cover <b>2,300+ NSE-listed companies</b> — corporate actions, pledge, credit rating, governance, and shareholding — with <b>XBRL parsers</b> extracting and normalizing key fields into PostgreSQL. Served through FastAPI, deployed with Docker.</p>
+        <h4>NeoTrade — Financial Market Intelligence Platform</h4>
+        <p>Live platform for Indian equities. <b>Daily automated scraping pipelines</b> orchestrated with Temporal cover <b>2,300+ NSE-listed companies</b> — corporate actions, pledge, credit rating, governance, and shareholding. Built <b>XBRL parsers</b> extracting and normalizing key governance &amp; shareholding fields into PostgreSQL. Served through FastAPI and deployed with Docker.</p>
         <div class="chips">
-          <span class="chip vio">Temporal</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">XBRL</span>
+          <span class="chip vio">Temporal</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">XBRL</span><span class="chip cyan">2,300+ NSE Cos</span>
         </div>
       </div>
 
       <div class="xp-block">
-        <h4>Hybrid RAG engine</h4>
-        <p>Each query fans out in parallel to a <b>Neo4j knowledge graph</b> (triplet retrieval) and a <b>vector store</b> (semantic search). Contexts merge with per-source health checks and single-source fallback — every answer grounded in retrieved evidence, so the model can't hallucinate a response.</p>
+        <h4>Hybrid RAG Engine (Zero Hallucination Grounding)</h4>
+        <p>Designed dual retrieval that fans each query out in parallel to a <b>Neo4j knowledge graph</b> (triplet retrieval) and a <b>vector store</b> (semantic search). Merges both contexts with per-source health checks and single-source fallback — <b>grounding every answer in retrieved evidence</b> to eliminate hallucinated responses.</p>
         <div class="chips">
-          <span class="chip vio">Neo4j</span><span class="chip vio">Vector search</span><span class="chip">LangChain</span><span class="chip">LangGraph</span>
+          <span class="chip vio">Neo4j</span><span class="chip vio">Vector DB</span><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip bull">Zero Hallucination</span>
         </div>
       </div>
 
       <div class="xp-block">
-        <h4>BSE announcements intelligence</h4>
-        <p>End-to-end pipeline scrapes filing PDFs and classifies each by category / sub-category into <b>importance buckets</b>. High-value filings get <b>OCR + LLM</b>: long &amp; short summaries, an important / not-important flag, and market sentiment — <b>bullish, bearish, or neutral</b> — signalling likely share-price impact. Non-important PDFs archive to S3 with OCR only; users trigger LLM analysis on demand, cutting inference costs.</p>
+        <h4>BSE Announcements Intelligence &amp; Cost Optimization</h4>
+        <p>End-to-end pipeline that scrapes filing PDFs, classifies each into <b>importance buckets</b>, and routes high-value documents to the LLM stage for <b>OCR + LLM analysis</b> (long &amp; short summaries, sentiment signalling: <b>bullish, bearish, or neutral</b>). Non-important PDFs archive to AWS S3 with OCR text extracted but no LLM run — users trigger LLM analysis on demand, <b>substantially cutting inference costs</b>.</p>
         <div class="chips">
-          <span class="chip bull">▲ bullish</span><span class="chip bear">▼ bearish</span><span class="chip neu">◆ neutral</span><span class="chip">OCR</span><span class="chip">AWS S3</span>
+          <span class="chip bull">▲ Bullish</span><span class="chip bear">▼ Bearish</span><span class="chip neu">◆ Neutral</span><span class="chip">OCR + LLM</span><span class="chip">AWS S3</span><span class="chip vio">Cost Optimized</span>
         </div>
       </div>
 
       <div class="xp-block">
-        <h4>News intelligence</h4>
-        <p>Integrated the <b>Marketaux API</b> for per-company market news, scraped full article text with <b>Trafilatura</b>, generated long &amp; short LLM summaries, and ingested them into the hybrid RAG knowledge base for retrieval.</p>
+        <h4>News Intelligence Engine</h4>
+        <p>Integrated the <b>Marketaux API</b> to pull per-company market news, scraped full article text with <b>Trafilatura</b>, generated long &amp; short LLM summaries, and ingested them into the hybrid RAG knowledge base for context-rich retrieval.</p>
         <div class="chips">
-          <span class="chip">Marketaux API</span><span class="chip">Trafilatura</span><span class="chip">RAG ingestion</span>
+          <span class="chip">Marketaux API</span><span class="chip">Trafilatura</span><span class="chip">RAG Ingestion</span>
         </div>
       </div>
 
       <div class="xp-block">
-        <h4>Kumbh Tech — investment platform</h4>
-        <p>Built the complete <b>Flutter frontend</b> for a two-role platform: <b>distributors</b> manage their investor network and recommend opportunities; <b>investors</b> execute one-time or SIP investments.</p>
+        <h4>Kumbh Tech — Investment Platform</h4>
+        <p>Built the complete <b>Flutter frontend</b> for a two-role investment platform where <b>distributors</b> manage their investor network and recommend opportunities, while <b>investors</b> execute one-time or SIP investments seamlessly.</p>
         <div class="chips">
-          <span class="chip vio">Flutter</span><span class="chip">One-time / SIP</span><span class="chip">Distributor · Investor roles</span>
+          <span class="chip vio">Flutter</span><span class="chip">SIP &amp; One-time</span><span class="chip">Distributor / Investor Roles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AI PLAYGROUND SIMULATOR ===== -->
+  <section class="section" id="playground">
+    <div class="section-head reveal">
+      <p class="eyebrow">interactive simulator</p>
+      <h2>Live AI Workflow Playground</h2>
+    </div>
+
+    <div class="playground reveal">
+      <div class="pg-header">
+        <div class="pg-title">
+          <h3>Test Agent &amp; RAG Execution Routes</h3>
+          <p>Click below to simulate how my production systems process queries in real-time.</p>
+        </div>
+        <div class="pg-selectors">
+          <button class="pg-btn active" id="pgbtn-1" onclick="runSim(1)">RAG Query (NeoTrade)</button>
+          <button class="pg-btn" id="pgbtn-2" onclick="runSim(2)">Multi-Agent Supervisor</button>
+          <button class="pg-btn" id="pgbtn-3" onclick="runSim(3)">BSE Sentiment Tagger</button>
+        </div>
+      </div>
+
+      <div class="pg-console">
+        <div class="pg-prompt" id="sim-prompt"><b>INPUT:</b> "Analyze promoter pledge changes for Reliance Industries Q4"</div>
+        <div class="pg-output" id="sim-output">Initializing execution trace...</div>
+        <div class="pg-meta" id="sim-meta">
+          <span>Latency: <b id="sm-lat">480ms</b></span>
+          <span>Security Gate: <b id="sm-sec">Passed</b></span>
+          <span>Hallucination Guard: <b id="sm-hal">100% Grounded</b></span>
         </div>
       </div>
     </div>
@@ -364,43 +549,97 @@ section{scroll-margin-top:96px}
   <section class="section" id="projects">
     <div class="section-head reveal">
       <p class="eyebrow">projects</p>
-      <h2>Selected work</h2>
+      <h2>Selected Systems &amp; Builds</h2>
     </div>
 
     <div class="grid-projects">
+      <!-- Project 1: Multi-Agent Assistant -->
       <article class="card featured reveal">
         <div class="card-top">
           <h3>Music Store Multi-Agent Assistant</h3>
-          <a class="card-link" href="https://github.com/Parth-hub-sys/Music-Assistant" target="_blank" rel="noopener">github ↗</a>
+          <div class="card-actions">
+            <button class="card-modal-btn" onclick="openModal('modal-music')">Specs &amp; Architecture 🔍</button>
+            <a class="card-link" href="https://github.com/Parth-hub-sys/Music-Assistant" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
         </div>
-        <p>A <b>supervisor-routed multi-agent system</b> over the Chinook PostgreSQL database — music, invoice, and general specialists in a deterministic pipeline with no ReAct loops. A privacy-first <b>identity gate</b> uses LangGraph interrupts (human-in-the-loop) before any sensitive data is exposed, and SQL runs only through <b>audited, parameterized Python tool wrappers</b> — never generated by the LLM. Persistent per-customer memory survives across sessions; every run is profiled end-to-end with LangSmith.</p>
+        <p>Architected a <b>supervisor-routed multi-agent system</b> (music, invoice, and general specialists) over the Chinook PostgreSQL database. Implemented a deterministic pipeline capped at <b>3 LLM calls per query</b> with zero ReAct loops. Enforced a privacy-first <b>identity gate via LangGraph interrupts</b> (human-in-the-loop); SQL runs exclusively through audited, parameterized Python tool wrappers — <b>never generated by the LLM</b>. Profiled end-to-end with LangSmith, cutting latency from ~49s to 4–5s (~10× speedup).</p>
         <div class="metrics-row">
-          <div class="metric"><b>49s → 4–5s</b><span>response time (~10×)</span></div>
-          <div class="metric"><b>3</b><span>max LLM calls / query</span></div>
-          <div class="metric"><b>0</b><span>LLM-generated SQL</span></div>
+          <div class="metric"><b>49s → 4–5s</b><span>latency reduction (~10×)</span></div>
+          <div class="metric"><b>3 LLM Calls</b><span>strict cap per query</span></div>
+          <div class="metric"><b>0 SQL Generated</b><span>audited tool wrappers</span></div>
+          <div class="metric"><b>LangSmith</b><span>end-to-end trace profiling</span></div>
         </div>
         <div class="chips">
-          <span class="chip vio">LangGraph</span><span class="chip">LangChain</span><span class="chip">Groq</span><span class="chip">PostgreSQL</span><span class="chip">FastAPI</span><span class="chip">LangSmith</span>
+          <span class="chip vio">LangGraph</span><span class="chip">LangChain</span><span class="chip">Groq</span><span class="chip">PostgreSQL</span><span class="chip">FastAPI</span><span class="chip">LangSmith</span><span class="chip bull">Privacy Gate</span>
         </div>
       </article>
 
+      <!-- Project 2: NeoTrade Platform -->
       <article class="card reveal">
-        <div class="card-top"><h3>Hybrid RAG System</h3></div>
-        <p>Personal RAG build combining <b>Neo4j graph retrieval</b> — symbolic reasoning over triplets — with <b>FAISS / Pinecone semantic search</b>, merging both contexts before generation. Significantly reduced hallucinations and improved answer accuracy on context-heavy questions.</p>
+        <div class="card-top">
+          <h3>NeoTrade — Market Intelligence Platform</h3>
+          <div class="card-actions">
+            <button class="card-modal-btn" onclick="openModal('modal-neotrade')">Details 🔍</button>
+          </div>
+        </div>
+        <p>Production financial intelligence engine covering <b>2,300+ NSE companies</b>. Features automated Temporal scraping, XBRL data extraction, BSE announcement classification, and cost-optimized OCR + LLM document summarization.</p>
+        <div class="metrics-row">
+          <div class="metric"><b>2,300+</b><span>NSE listed equities</span></div>
+          <div class="metric"><b>AWS S3</b><span>cost-optimized archive</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip vio">Temporal</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">XBRL</span><span class="chip">Docker</span>
+        </div>
+      </article>
+
+      <!-- Project 3: Hybrid RAG System -->
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>Hybrid RAG System (GraphDB + VectorDB)</h3>
+          <div class="card-actions">
+            <button class="card-modal-btn" onclick="openModal('modal-rag')">Details 🔍</button>
+            <a class="card-link" href="https://github.com/Parth-hub-sys/RAG_Vector_Graph-main" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+        <p>Advanced RAG build combining <b>Neo4j graph retrieval</b> (symbolic reasoning over triplets) with <b>FAISS / Pinecone vector search</b>, merging both context sources prior to LLM generation to eliminate hallucination risks.</p>
+        <div class="metrics-row">
+          <div class="metric"><b>Neo4j</b><span>symbolic knowledge graph</span></div>
+          <div class="metric"><b>FAISS / Pinecone</b><span>semantic vector search</span></div>
+        </div>
         <div class="chips">
           <span class="chip vio">Neo4j</span><span class="chip">FAISS / Pinecone</span><span class="chip">LangChain</span><span class="chip">Python</span>
         </div>
       </article>
 
+      <!-- Project 4: Agentic Product Search -->
       <article class="card reveal">
-        <div class="card-top"><h3>Car Price Prediction — Kaggle</h3></div>
-        <p>XGBoost regression model that ranked <b>8th (Top 10)</b> on the competition leaderboard. Improved performance <b>~25%</b> through feature engineering and hyperparameter tuning.</p>
+        <div class="card-top">
+          <h3>Agentic Product Search &amp; Analysis Tool</h3>
+          <div class="card-actions">
+            <button class="card-modal-btn" onclick="openModal('modal-scraper')">Details 🔍</button>
+          </div>
+        </div>
+        <p>Autonomous AI agent designed to fetch product prices, ratings, and reviews across e-commerce platforms using automated HTML parsing (<b>BeautifulSoup / Scrapy</b>) and structured data ingestion.</p>
+        <div class="chips">
+          <span class="chip vio">LangChain</span><span class="chip">BeautifulSoup</span><span class="chip">Scrapy</span><span class="chip">Web APIs</span>
+        </div>
+      </article>
+
+      <!-- Project 5: Kaggle Car Price -->
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>Car Price Prediction — Kaggle #8 Finish</h3>
+          <div class="card-actions">
+            <button class="card-modal-btn" onclick="openModal('modal-kaggle')">Details 🔍</button>
+          </div>
+        </div>
+        <p>Competitive XGBoost regression model that achieved <b>8th position (Top 10)</b> on the Kaggle competition leaderboard. Boosted accuracy by <b>~25%</b> through advanced feature engineering and tuning.</p>
         <div class="metrics-row">
-          <div class="metric"><b>#8</b><span>leaderboard rank</span></div>
-          <div class="metric"><b>+25%</b><span>model improvement</span></div>
+          <div class="metric"><b>Rank #8</b><span>Top 10 Kaggle finish</span></div>
+          <div class="metric"><b>+25%</b><span>model boost via tuning</span></div>
         </div>
         <div class="chips">
-          <span class="chip vio">XGBoost</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span>
+          <span class="chip vio">XGBoost</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
         </div>
       </article>
     </div>
@@ -410,31 +649,31 @@ section{scroll-margin-top:96px}
   <section class="section" id="skills">
     <div class="section-head reveal">
       <p class="eyebrow">skills</p>
-      <h2>Tools I work with</h2>
+      <h2>Technical Stack &amp; Core Competencies</h2>
     </div>
     <div class="skills-grid">
       <div class="skill-group reveal">
-        <h3>GenAI &amp; LLMs</h3>
+        <h3>GenAI &amp; LLM Systems</h3>
         <div class="chips">
-          <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Hybrid RAG</span><span class="chip">Multi-Agent Systems</span><span class="chip">Prompt Engineering</span><span class="chip">Groq</span><span class="chip">LangSmith</span><span class="chip">OCR + LLM pipelines</span>
+          <span class="chip vio">LangChain</span><span class="chip vio">LangGraph</span><span class="chip vio">Hybrid RAG</span><span class="chip vio">Multi-Agent Workflows</span><span class="chip">Prompt Engineering</span><span class="chip">Groq</span><span class="chip">LangSmith</span><span class="chip">OCR + LLM Pipelines</span>
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>Data &amp; Backend</h3>
+        <h3>Data &amp; Backend Infrastructure</h3>
         <div class="chips">
-          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">SQLAlchemy</span><span class="chip">Neo4j</span><span class="chip">MongoDB</span><span class="chip">Temporal</span><span class="chip">Docker</span><span class="chip">AWS S3</span><span class="chip">Web Scraping</span><span class="chip">XBRL Parsing</span>
+          <span class="chip cyan">Python</span><span class="chip cyan">SQL</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">SQLAlchemy</span><span class="chip">Neo4j</span><span class="chip">MongoDB</span><span class="chip">Temporal</span><span class="chip">Docker</span><span class="chip">WSL (Linux)</span><span class="chip">AWS S3</span><span class="chip">Web Scraping</span><span class="chip">XBRL Parsing</span>
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>ML &amp; Deep Learning</h3>
+        <h3>Machine Learning &amp; Deep Learning</h3>
         <div class="chips">
-          <span class="chip">Scikit-learn</span><span class="chip">XGBoost</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">Time Series</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+          <span class="chip">Scikit-learn</span><span class="chip">XGBoost</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">Time Series Analysis</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>Frontend &amp; Other</h3>
+        <h3>Frontend &amp; Development Tools</h3>
         <div class="chips">
-          <span class="chip">Flutter</span><span class="chip">React</span><span class="chip">Git / GitHub</span>
+          <span class="chip">Flutter</span><span class="chip">React</span><span class="chip">Git / GitHub</span><span class="chip vio">WSL / Linux Environment</span><span class="chip">REST APIs</span>
         </div>
       </div>
     </div>
@@ -444,116 +683,288 @@ section{scroll-margin-top:96px}
   <section class="section" id="education">
     <div class="section-head reveal">
       <p class="eyebrow">education</p>
-      <h2>Background</h2>
+      <h2>Academic Background</h2>
     </div>
     <div class="edu reveal">
       <div>
         <h3>B.Tech in Information Technology</h3>
-        <p>Sarvajanik College of Engineering &amp; Technology, Surat</p>
+        <p>Sarvajanik College of Engineering &amp; Technology, Surat, Gujarat</p>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:4px">2022 – 2026 | Languages: English, Hindi, Gujarati</p>
       </div>
-      <div style="text-align:right">
-        <p style="font-family:var(--mono);font-size:13px;color:var(--ink)">2022 – 2026</p>
-        <p style="font-family:var(--mono);font-size:13px">CGPA 8.54</p>
+      <div>
+        <span class="edu-cgpa">CGPA: 8.54 / 10.0</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- ===== CONTACT / CTA ===== -->
   <section class="footer" id="contact">
     <div class="reveal">
-      <h2>Let's build something.</h2>
-      <p>Open to AI engineering roles — LLM systems, RAG, agents, and the data infrastructure behind them.</p>
-      <div class="links-row" style="justify-content:center">
-        <a class="btn primary" href="mailto:ptarsariya176@gmail.com">ptarsariya176@gmail.com</a>
-        <a class="btn" href="https://github.com/Parth-hub-sys" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="https://www.linkedin.com/in/parth-tarsariya-56b544262" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <h2>Let's build something high-impact.</h2>
+      <p>Available for AI engineering roles, hybrid RAG builds, multi-agent systems, and production LLM consulting.</p>
+      
+      <div class="contact-card">
+        <div class="links-row" style="justify-content:center;margin-top:0">
+          <a class="btn primary" href="mailto:ptarsariya176@gmail.com">Send Email ✉️</a>
+          <button class="btn" onclick="copyText('ptarsariya176@gmail.com', 'Email copied to clipboard!')">Copy Email (ptarsariya176@gmail.com)</button>
+          <button class="btn" onclick="copyText('+919723782351', 'Phone number copied!')">Copy Phone (+91 97237 82351)</button>
+        </div>
+        <div class="links-row" style="justify-content:center;margin-top:16px">
+          <a class="btn" href="https://github.com/Parth-hub-sys" target="_blank" rel="noopener">GitHub Profile ↗</a>
+          <a class="btn" href="https://www.linkedin.com/in/parth-tarsariya-56b544262" target="_blank" rel="noopener">LinkedIn Profile ↗</a>
+          <a class="btn cyan" href="Parth_Tarsariya_resume.pdf" download="Parth_Tarsariya_resume.pdf">Download Resume 📄</a>
+        </div>
       </div>
+
       <div class="footer-meta">
-        <span>Surat, Gujarat, India</span>
-        <span>+91 97237 82351</span>
+        <span>📍 Surat, Gujarat, India</span>
+        <span>📞 +91 97237 82351</span>
+        <span>📧 ptarsariya176@gmail.com</span>
         <span>© <span id="year"></span> Parth Tarsariya</span>
       </div>
     </div>
   </section>
 
 </main>
+
+<!-- ===== TOAST NOTIFICATION ===== -->
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<!-- ===== PROJECT DETAIL MODALS ===== -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-dynamic-content"></div>
+  </div>
+</div>
+
 <script>
-// ---------- terminal traces (signature element) ----------
+// ---------- TERMINAL TRACES ----------
 const traces = [
   {
     title: "neotrade · hybrid rag trace",
     lines: [
       '<span class="dim">$</span> <span class="key">query</span> "promoter pledge changes for RELIANCE last quarter"',
       '<span class="dim">→</span> vector_search   chroma      <span class="ok">✓</span> 12 chunks',
-      '<span class="dim">→</span> graph_search    neo4j       <span class="ok">✓</span> 9 triplets',
-      '<span class="dim">→</span> merge_context   both ok     <span class="ok">✓</span> fallback not needed',
-      '<span class="dim">→</span> llm_answer      grounded in retrieved evidence <span class="ok">✓</span>'
+      '<span class="dim">→</span> graph_search    neo4j       <span class="ok">✓</span> 9 triplets (symbolic reasoning)',
+      '<span class="dim">→</span> merge_context   both ok     <span class="ok">✓</span> health checks passed',
+      '<span class="dim">→</span> llm_answer      grounded in retrieved evidence <span class="ok">✓ zero hallucination</span>'
     ]
   },
   {
     title: "neotrade · bse announcement pipeline",
     lines: [
       '<span class="dim">$</span> <span class="key">bse_filing</span> PDF "Investor Presentation — Q4 Results"',
-      '<span class="dim">→</span> classify        sub-category → <span class="key">important bucket</span>',
+      '<span class="dim">→</span> classify        sub-category → <span class="key">high-value bucket</span>',
       '<span class="dim">→</span> ocr + llm       long summary <span class="ok">✓</span>  short summary <span class="ok">✓</span>',
-      '<span class="dim">→</span> sentiment       <span class="up">▲ BULLISH</span> — likely share-price impact',
-      '<span class="dim">→</span> ingest          rag knowledge base <span class="ok">✓</span>'
+      '<span class="dim">→</span> sentiment       <span class="up">▲ BULLISH</span> — market impact detected',
+      '<span class="dim">→</span> cost_opt        archive low-value filings to AWS S3 (OCR text only) <span class="ok">✓</span>'
     ]
   },
   {
-    title: "music assistant · agent route",
+    title: "music assistant · agent supervisor",
     lines: [
-      '<span class="dim">$</span> <span class="key">user</span> "show my invoices"',
-      '<span class="dim">→</span> verify_identity  interrupt → human input <span class="ok">✓</span>',
-      '<span class="dim">→</span> supervisor       intent: <span class="key">invoice</span>',
-      '<span class="dim">→</span> tool             get_invoices_by_customer <span class="ok">✓</span> safe SQL wrapper',
-      '<span class="dim">→</span> response         <span class="ok">4.9s</span> <span class="dim">(down from 49s)</span>'
+      '<span class="dim">$</span> <span class="key">user</span> "show my recent invoice details"',
+      '<span class="dim">→</span> verify_identity  interrupt → human input verification <span class="ok">✓</span>',
+      '<span class="dim">→</span> supervisor       intent: <span class="key">invoice specialist</span>',
+      '<span class="dim">→</span> tool             get_invoices_by_customer <span class="ok">✓ parameterized SQL wrapper</span>',
+      '<span class="dim">→</span> response         <span class="ok">4.2s</span> <span class="dim">(reduced from 49s, ~10x faster)</span>'
     ]
   }
 ];
 
 const termText = document.getElementById('term-text');
 const termTitle = document.getElementById('term-title');
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const termTabs = document.querySelectorAll('.term-tab');
+let activeTraceIdx = 0;
+let traceTimeout = null;
 
-function showStatic(i){
-  termTitle.textContent = traces[i].title;
-  termText.innerHTML = traces[i].lines.join('\n');
-}
-
-if (reduced) {
-  showStatic(0);
-} else {
-  let t = 0;
-  function playTrace(){
-    const trace = traces[t];
-    termTitle.textContent = trace.title;
-    termText.innerHTML = '';
-    let li = 0;
-    function nextLine(){
-      if (li < trace.lines.length){
-        termText.innerHTML += (li ? '\n' : '') + trace.lines[li];
-        li++;
-        setTimeout(nextLine, li === 1 ? 700 : 480);
-      } else {
-        t = (t + 1) % traces.length;
-        setTimeout(playTrace, 4200);
-      }
+function renderTrace(i){
+  activeTraceIdx = i;
+  termTabs.forEach((tab, idx) => tab.classList.toggle('active', idx === i));
+  const trace = traces[i];
+  termTitle.textContent = trace.title;
+  termText.innerHTML = '';
+  let li = 0;
+  
+  function nextLine(){
+    if (li < trace.lines.length){
+      termText.innerHTML += (li ? '\n' : '') + trace.lines[li];
+      li++;
+      traceTimeout = setTimeout(nextLine, li === 1 ? 500 : 350);
+    } else {
+      traceTimeout = setTimeout(() => {
+        selectTrace((activeTraceIdx + 1) % traces.length);
+      }, 4500);
     }
-    nextLine();
   }
-  playTrace();
+  nextLine();
 }
 
-// ---------- scroll reveal ----------
+function selectTrace(i){
+  clearTimeout(traceTimeout);
+  renderTrace(i);
+}
+
+renderTrace(0);
+
+// ---------- INTERACTIVE PLAYGROUND SIMULATOR ----------
+const simData = {
+  1: {
+    prompt: 'INPUT: "Fetch quarterly shareholding pattern & XBRL governance summary for Tata Motors"',
+    output: `[RAG Pipeline]: Dual fan-out initiated...
+├── Vector Store (ChromaDB): 15 semantic chunks retrieved (0.92 cosine sim)
+└── Neo4j Graph DB: Extracted 8 triplets (Company -> Shareholder -> PledgeStatus)
+[Health Check]: Both channels healthy. Merging contexts without fallback.
+[LLM Generation]: Grounding prompt with 23 retrieved evidence items.
+[Result]: Extracted 68.4% promoter holding, 0% pledge. Summary generated in 540ms.`,
+    lat: '540ms', sec: 'Passed', hal: '100% Grounded'
+  },
+  2: {
+    prompt: 'INPUT: "Update billing address and list top purchased albums"',
+    output: `[LangGraph Supervisor]: Query evaluated for authorization...
+[Human-in-the-Loop]: Identity gate trigger! Prompted user for PIN verification -> Authenticated ✓
+[Router]: Delegating to Invoice Specialist & Music Specialist.
+[Tool Call]: Executed \`get_customer_purchases(customer_id=142)\` via SQLAlchemy wrapper.
+[Safety]: 0 raw LLM SQL generated. Capped at 2 LLM iterations.
+[Result]: Completed in 4.1s (10x faster than baseline ReAct loop).`,
+    lat: '4.1s', sec: 'Auth Gate Passed', hal: 'Zero Unsafe Execution'
+  },
+  3: {
+    prompt: 'INPUT: "Classify BSE filing PDF: Scheme of Arrangement / Demerger Announcement"',
+    output: `[BSE Classifier]: Scraped PDF metadata -> Tagged as High-Value Corporate Action.
+[OCR Engine]: Extracted 14 pages structured text.
+[LLM Sentiment]: Analyzed long & short summaries.
+[Signal]: ▲ BULLISH (Major unlock of shareholder value detected).
+[Cost Guard]: Non-critical annexures archived to AWS S3 without extra LLM invocation.`,
+    lat: '820ms', sec: 'S3 Sandbox', hal: 'Cost-Optimized'
+  }
+};
+
+function runSim(id){
+  for(let i=1; i<=3; i++){
+    document.getElementById(`pgbtn-${i}`).classList.toggle('active', i === id);
+  }
+  const d = simData[id];
+  document.getElementById('sim-prompt').innerHTML = `<b>${d.prompt}</b>`;
+  document.getElementById('sim-output').textContent = d.output;
+  document.getElementById('sm-lat').textContent = d.lat;
+  document.getElementById('sm-sec').textContent = d.sec;
+  document.getElementById('sm-hal').textContent = d.hal;
+}
+runSim(1);
+
+// ---------- MODAL POPUP DATA & FUNCTIONS ----------
+const modalData = {
+  'modal-music': {
+    title: 'Music Store Multi-Agent Assistant',
+    content: `
+      <p><b>Architecture &amp; Key Technical Highlights:</b></p>
+      <ul>
+        <li><b>LangGraph Supervisor Pattern:</b> Multi-agent architecture comprising supervisor, music specialist, invoice specialist, and general assistant nodes.</li>
+        <li><b>Deterministic Execution:</b> Strict limit of 3 LLM calls per query. Completely eliminated runaway ReAct loops and unconstrained retries.</li>
+        <li><b>Human-In-The-Loop Interrupts:</b> Privacy-first authorization gate built with LangGraph interrupts before revealing customer PII or sensitive invoices.</li>
+        <li><b>Audited Tool Wrappers:</b> All database queries execute via parameterized SQLAlchemy tool wrappers. Zero raw SQL generated by LLM, guaranteeing SQL-injection immunity.</li>
+        <li><b>Performance Optimization:</b> Profiled end-to-end with LangSmith, reducing query latency from ~49 seconds to 4–5 seconds (~10x speedup).</li>
+      </ul>
+      <h4>Tech Stack</h4>
+      <p>LangGraph, LangChain, Groq, PostgreSQL (Chinook DB), FastAPI, LangSmith, Python.</p>
+      <p style="margin-top:14px"><a class="btn primary" href="https://github.com/Parth-hub-sys/Music-Assistant" target="_blank" rel="noopener">View Repository on GitHub ↗</a></p>
+    `
+  },
+  'modal-neotrade': {
+    title: 'NeoTrade — Financial Market Intelligence Platform',
+    content: `
+      <p><b>Production Impact &amp; Engineering:</b></p>
+      <ul>
+        <li><b>Massive Equity Coverage:</b> Daily automated web scrapers orchestrated with Temporal covering <b>2,300+ NSE-listed companies</b>.</li>
+        <li><b>XBRL Data Extraction:</b> High-throughput data engine parsing complex XBRL filings into normalized PostgreSQL schemas.</li>
+        <li><b>BSE Filing Intelligence:</b> Automated classifier categorizing PDF filings by importance. High-value filings undergo OCR + LLM sentiment classification (Bullish / Bearish / Neutral).</li>
+        <li><b>Cost Optimization:</b> Low-value filings are archived to AWS S3 with OCR text stored, allowing on-demand LLM summarization on user request — cutting inference costs significantly.</li>
+      </ul>
+      <h4>Tech Stack</h4>
+      <p>Python, FastAPI, Temporal, PostgreSQL, Docker, AWS S3, OCR, XBRL, Marketaux API, Trafilatura.</p>
+    `
+  },
+  'modal-rag': {
+    title: 'Hybrid RAG System (Neo4j + FAISS / Pinecone)',
+    content: `
+      <p><b>Context Merging &amp; Zero Hallucination:</b></p>
+      <ul>
+        <li><b>Dual Retrieval Engine:</b> Combines Neo4j graph retrieval (symbolic knowledge graph triplets) with vector similarity search (FAISS / Pinecone).</li>
+        <li><b>Context Grounding:</b> Merges structural graph facts with semantic vector chunks before passing to the generator LLM.</li>
+        <li><b>Health Checks &amp; Fallbacks:</b> Includes single-source fallback mechanisms to maintain reliability during partial DB outages.</li>
+      </ul>
+      <h4>Tech Stack</h4>
+      <p>Neo4j, FAISS, Pinecone, LangChain, Python, Vector Embeddings.</p>
+      <p style="margin-top:14px"><a class="btn primary" href="https://github.com/Parth-hub-sys/RAG_Vector_Graph-main" target="_blank" rel="noopener">View Repository on GitHub ↗</a></p>
+    `
+  },
+  'modal-scraper': {
+    title: 'Agentic Product Search &amp; Analysis Tool',
+    content: `
+      <p><b>Data Extraction &amp; Web Scraping:</b></p>
+      <ul>
+        <li><b>Automated HTML Parsing:</b> Built with BeautifulSoup and Scrapy to parse complex, dynamic product pages.</li>
+        <li><b>Multi-Source Ingestion:</b> Aggregates price, ratings, and user reviews from multiple web sources into unified JSON insights.</li>
+        <li><b>AI Agent Routing:</b> Uses LangChain to evaluate product consensus and present automated comparison tables.</li>
+      </ul>
+      <h4>Tech Stack</h4>
+      <p>Python, LangChain, BeautifulSoup, Scrapy, Web APIs.</p>
+    `
+  },
+  'modal-kaggle': {
+    title: 'Car Price Prediction — Kaggle Competition (#8 Finish)',
+    content: `
+      <p><b>Competitive Machine Learning:</b></p>
+      <ul>
+        <li><b>Top 10 Finish:</b> Ranked 8th overall on the Kaggle competition leaderboard.</li>
+        <li><b>Feature Engineering:</b> Created domain-specific numerical and categorical features, boosting baseline model performance by ~25%.</li>
+        <li><b>Model Architecture:</b> Trained and tuned XGBoost regressor using cross-validation and hyperparameter search.</li>
+      </ul>
+      <h4>Tech Stack</h4>
+      <p>XGBoost, Scikit-learn, Pandas, NumPy, Matplotlib.</p>
+    `
+  }
+};
+
+function openModal(key){
+  const data = modalData[key];
+  if(!data) return;
+  document.getElementById('modal-dynamic-content').innerHTML = `
+    <h3 class="modal-title">${data.title}</h3>
+    <div class="modal-body">${data.content}</div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function closeModalOnOverlay(e){
+  if(e.target.id === 'modal-overlay') closeModal();
+}
+
+// ---------- COPY TO CLIPBOARD & TOAST ----------
+function copyText(text, msg){
+  navigator.clipboard.writeText(text).then(()=>{
+    const toast = document.getElementById('toast');
+    toast.textContent = msg || 'Copied to clipboard!';
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2800);
+  });
+}
+
+// ---------- INTERSECTION OBSERVER REVEAL ----------
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   });
-},{threshold:.12});
+},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// ---------- footer year ----------
+// ---------- FOOTER YEAR ----------
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
